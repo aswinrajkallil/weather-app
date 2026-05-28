@@ -110,6 +110,7 @@ body::before {
   z-index: 1;
   width: 100%;
   max-width: var(--container-width);
+  margin: 0 10px;
 
   display: flex;
   flex-direction: column;
@@ -147,6 +148,7 @@ body::before {
   width: 100%;
   display: flex;
   align-items: center;
+  padding-right: 4px;
   gap: 10px;
   margin-bottom: 28px;
 }
