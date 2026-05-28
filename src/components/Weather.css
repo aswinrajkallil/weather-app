@@ -22,43 +22,6 @@
   --ease-smooth:       cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── Global reset (component-safe) ──────────────────────── */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* ── Body / page background ─────────────────────────────── */
-/* Kept here so Weather.css is self-contained, but you can
-   move this block to index.css / App.css if you prefer.     */
-html,
-body {
-  overflow-x: hidden;          /* prevent horizontal scroll on ALL browsers */
-}
-
-body {
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 24px 16px;
-
-  background: linear-gradient(
-    135deg,
-    #05006d 0%,
-    #0a0060 40%,
-    #00d4ff 100%
-  );
-
-  font-family: var(--font);
-  color: var(--clr-text);
-  -webkit-font-smoothing: antialiased;
-}
-
 /* ── Card container ─────────────────────────────────────── */
 /*
   JSX structure inside .container:
@@ -90,7 +53,7 @@ body {
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
 
-  border: 1px solid var(--clr-border);
+  border: none;
   box-shadow:
     0 8px 32px var(--clr-shadow),
     0 1px 0 rgba(255, 255, 255, 0.12) inset,
@@ -270,10 +233,7 @@ body {
 /* ── Responsive — Tablet / Mobile (≤ 520px) ────────────── */
 @media (max-width: 520px) {
 
-  body { padding: 20px 12px; }
-
-  /* Container fills viewport width minus body padding.
-     No fixed margin — that was the overflow bug. */
+  /* Container fills viewport width minus .app padding. */
   .container {
     width: 100%;
     max-width: 100%;
@@ -317,8 +277,6 @@ body {
 
 /* ── Responsive — Small Mobile (≤ 360px) ───────────────── */
 @media (max-width: 360px) {
-
-  body { padding: 16px 10px; }
 
   .container { padding: 20px 14px; }
 
