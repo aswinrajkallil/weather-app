@@ -81,7 +81,6 @@ https://weather.aswinraj.dev
 
 * Portfolio: https://aswinraj.dev
 * LinkedIn: https://linkedin.com/in/aswinrajkallil
-* GitHub: https://github.com/aswinrajkallil
 * Instagram: https://instagram.com/aswinraj.dev
 
 ---
