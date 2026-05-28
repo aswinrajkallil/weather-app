@@ -69,7 +69,7 @@ const Weather = () => {
                 handleSearch();
               }
             }}/>
-          <MdSearch className="search-icon" size='2.5em' onClick= {handleSearch}/> 
+          <MdSearch className="search-icon" size={28} onClick= {handleSearch}/> 
         </div>
         
         <img src={weatherData?.icon} alt="Weather" className="weather-icon" />

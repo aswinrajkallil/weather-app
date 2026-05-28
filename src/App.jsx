@@ -11,7 +11,6 @@ const App = () => {
       <h1 className="weather-title">Weather App</h1>
       <Weather />
       <Footer />
-      
     </div>
   )
 }
