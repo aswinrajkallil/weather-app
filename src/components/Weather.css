@@ -56,6 +56,12 @@
   padding: 0;
 }
 
+/* FIX 1: Apply overflow-x: hidden on BOTH html and body so it works across all browsers */
+html,
+body {
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -63,7 +69,6 @@ html {
 
 body {
   width: 100%;
-  overflow-x: hidden;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -72,7 +77,6 @@ body {
   padding: 24px 16px;
 
   background: linear-gradient(135deg, var(--clr-bg-start) 0%, #0a0060 40%, var(--clr-bg-end) 100%);
-  
 
   font-family: var(--font-base);
   color: var(--clr-text);
@@ -110,7 +114,9 @@ body::before {
   z-index: 1;
   width: 100%;
   max-width: var(--container-width);
-  margin: 0 10px;
+  /* FIX 2: Replaced fixed margin: 0 10px with margin: 0 auto so it
+     centers correctly without adding extra width on small screens */
+  margin: 0 auto;
 
   display: flex;
   flex-direction: column;
@@ -148,13 +154,16 @@ body::before {
   width: 100%;
   display: flex;
   align-items: center;
-  padding-right: 4px;
+  /* FIX 3: Removed padding-right: 4px which threw off alignment on mobile */
   gap: 10px;
   margin-bottom: 28px;
 }
 
 .search input {
   flex: 1;
+  /* FIX 4: Added min-width: 0 so the input can shrink below its default
+     intrinsic width inside a flex container on very small screens */
+  min-width: 0;
   height: 48px;
   border: 2px solid transparent;
   outline: none;
@@ -189,11 +198,10 @@ body::before {
   justify-content: center;
 
   border-radius: 50%;
-  border: none;
+  border: 1px solid var(--clr-border);
   cursor: pointer;
   color: var(--clr-text);
   background: var(--clr-surface-hover);
-  border: 1px solid var(--clr-border);
 
   transition:
     transform var(--duration-base) var(--ease-bounce),
@@ -339,58 +347,59 @@ body::before {
 }
 
 /* ---------- Responsive ---------- */
-/* ---------- Responsive ---------- */
 
 /* Tablet & Mobile */
 @media (max-width: 520px) {
 
-  body{
+  body {
     padding: 20px 12px;
   }
 
-  .container{
-    width: 95%;
+  .container {
+    /* FIX 5: Width is now driven purely by body padding — no extra margin
+       needed. Using width: 100% here lets the body padding do the work. */
+    width: 100%;
     max-width: 100%;
     padding: 24px 18px;
     border-radius: 20px;
   }
 
-  .weather-title{
+  .weather-title {
     font-size: 2.4rem;
     margin-bottom: 18px;
   }
 
-  .search{
+  .search {
     gap: 8px;
     margin-bottom: 24px;
   }
 
-  .search input{
+  .search input {
     height: 46px;
     font-size: 0.95rem;
     padding: 0 16px;
   }
 
-  .search-icon{
+  .search-icon {
     width: 46px;
     height: 46px;
   }
 
-  .weather-icon{
+  .weather-icon {
     width: 120px;
     height: 120px;
   }
 
-  .temperature{
+  .temperature {
     font-size: 4rem;
   }
 
-  .city{
+  .city {
     font-size: 2rem;
     text-align: center;
   }
 
-  .weather-data{
+  .weather-data {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
@@ -399,11 +408,11 @@ body::before {
     padding-top: 20px;
   }
 
-  .col{
+  .col {
     width: 100%;
   }
 
-  .col:last-child{
+  .col:last-child {
     justify-content: flex-start;
   }
 
@@ -412,42 +421,42 @@ body::before {
 /* Small Mobile */
 @media (max-width: 360px) {
 
-  body{
+  body {
     padding: 16px 10px;
   }
 
-  .container{
+  .container {
     padding: 20px 14px;
   }
 
-  .weather-title{
+  .weather-title {
     font-size: 2rem;
   }
 
-  .search input{
+  .search input {
     height: 42px;
     font-size: 0.9rem;
   }
 
-  .search-icon{
+  .search-icon {
     width: 42px;
     height: 42px;
   }
 
-  .weather-icon{
+  .weather-icon {
     width: 100px;
     height: 100px;
   }
 
-  .temperature{
+  .temperature {
     font-size: 3.3rem;
   }
 
-  .city{
+  .city {
     font-size: 1.5rem;
   }
 
-  .col p{
+  .col p {
     font-size: 1rem;
   }
 
