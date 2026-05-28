@@ -10,18 +10,21 @@ const Weather = () => {
 
   const [weatherData, setWeatherData] = useState({});
 
+  
+
   const searchWeather = async (CITY_NAME) => {
     try{
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&units=metric&appid=${import.meta.env.VITE_API_KEY}&units=metric`
       const response = await fetch(url);
       const data = await response.json();
-      const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      
       console.log(data);
 
-      if(data.cod === "404"){
+      if(data.cod == "404"){
         alert("City not found");
         return;
       }
+      const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
       setWeatherData({
         city: data.name,
@@ -36,12 +39,19 @@ const Weather = () => {
     }
   }
   useEffect(() => {
-    searchWeather('delhi');
+    searchWeather('calicut');
   }, [])
 
   const handleSearch = () => {
     const city = document.querySelector('input').value;
+
+      if (city.trim() === "") {
+      alert("Please enter a city name");
+      return;
+      }
+
     searchWeather(city);
+    document.getElementById('cityInput').value = "";
   }
 
 
@@ -49,9 +59,19 @@ const Weather = () => {
     <div className='container'>
 
         <div className="search">
-          <input  type="text" placeholder="Enter city name" />
+          <input  
+            id="cityInput" 
+            type="text" 
+            placeholder="Enter city name" 
+
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}/>
           <MdSearch className="search-icon" size='2.5em' onClick= {handleSearch}/> 
         </div>
+        
         <img src={weatherData?.icon} alt="Weather" className="weather-icon" />
 
         <div className="weather-info">
