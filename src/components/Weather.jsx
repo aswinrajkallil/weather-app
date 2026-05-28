@@ -2,12 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import './Weather.css'
 import { MdSearch } from 'react-icons/md';
-import clear from '../assets/clear.png'
-import cloud from '../assets/cloud.png'
-import drizzle from '../assets/drizzle.png'
 import humidity from '../assets/humidity.png'
-import rain from '../assets/rain.png'
-import snow from '../assets/snow.png'
 import wind from '../assets/wind.png'
 
 
@@ -18,34 +13,22 @@ const Weather = () => {
   const searchWeather = async (CITY_NAME) => {
     try{
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&units=metric&appid=${import.meta.env.VITE_API_KEY}&units=metric`
-
-
-      const allIcons = {
-        "01d":clear,
-        "01n":clear,
-        "02d":cloud,
-        "02n":cloud,
-        "03d":cloud,
-        "03n":cloud,
-        "04d":drizzle,
-        "04n":drizzle,
-        "09d":rain,
-        "09n":rain,
-        "10d":rain,
-        "10n":rain,  
-        "13d":snow,
-        "13n":snow,
-      }
       const response = await fetch(url);
       const data = await response.json();
+      const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
       console.log(data);
+
+      if(data.cod === "404"){
+        alert("City not found");
+        return;
+      }
+
       setWeatherData({
         city: data.name,
         humidity: data.main.humidity,
         temparature: Math.floor(data.main.temp),
         windspeed: data.wind.speed,
-        icon: allIcons[data.weather[0].icon] || clear,
-
+        icon: icon,
       });
 
     }catch(error){

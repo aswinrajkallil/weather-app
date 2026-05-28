@@ -8,7 +8,6 @@ const Footer = () => {
   return (
     <div className='footer'>
         <footer className="footer">
-        <p>Built with React & OpenWeatherMap API</p>
 
         <div className="footer-links">
 
