@@ -22,7 +22,7 @@
   --clr-shadow:     rgba(0, 0, 0, 0.28);
 
   /* Sizing & spacing */
-  --container-width:    440px;
+  --container-width:    420px;
   --container-padding:  36px 32px;
   --border-radius-lg:   24px;
   --border-radius-md:   14px;
@@ -255,7 +255,7 @@ body::before {
 
 /* ---------- Weather Data Row ---------- */
 .weather-data {
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
